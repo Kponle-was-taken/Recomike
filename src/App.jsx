@@ -16,6 +16,7 @@ export const App = () => {
         <Route path ="/feeds" element ={<FeedList />}/> 
         <Route path ="/feeds-full" element ={<FeedListFull />}/>
         <Route path ="/concentrates" element ={<ConcentrateList />}/> 
+        
         {/* <Route path ="/farm-items" element ={<FarmItems />}/> */}
       </Routes>
       <Footer />
