@@ -121,6 +121,27 @@ export const Concentrates = [
     name: "Organic Piglet Concentrate",
     price: 23700,
     img: piglet
+  },
+
+  {
+    id: 2,
+    name: "Organic Concentrate",
+    price: 17700,
+    img: organicconcentrate
+  },
+
+  {
+    id: 3,
+    name: "Protein Combo",
+    price: 20200,
+    img: proteincombo
+  },
+
+  {
+    id:4,
+    name: "Creep Feed",
+    price: 17500,
+    img: creepFeed
   }
   
 ]

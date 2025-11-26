@@ -1,24 +1,21 @@
 import React from 'react';
-import Modal from './Modal.jsx'; // Reusing your existing Modal structure
+import Modal from './Modal.jsx'; 
 import { useCart } from '../pages/CartContext.jsx';
+import { FaTrash } from 'react-icons/fa'; 
 
 const CartModal = ({ isOpen, onClose }) => {
-    const { cartItems, emptyCart } = useCart();
+    const { cartItems, removeFromCart } = useCart();
 
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     };
 
-    const handleEmptyCart = () => {
-        emptyCart();
-        onClose(); // Close the modal after emptying the cart
-    };
 
     const handleProceedToCheckout = () => {
-        // --- Replace this with your WhatsApp number ---
-        const whatsappNumber = '2348081733253'; // Use your full number with country code, without '+' or spaces
+        
+        const whatsappNumber = '2348081733253'; 
 
-        // Create the order summary message
+        
         const orderItems = cartItems.map(item => 
             `- ${item.name}: ${item.quantity} x ₦${item.price} = ₦${item.quantity * item.price}`
         ).join('\n');
@@ -33,9 +30,11 @@ ${orderItems}
 
 *Total: ₦${totalAmount}*
 
+This is my address :
+
 Thank you!`;
 
-        // Create the WhatsApp URL and open it in a new tab
+        
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     };
@@ -49,10 +48,16 @@ Thank you!`;
                 <>
                     <div className="max-h-60 overflow-y-auto mb-4 pr-2">
                         {cartItems.map(item => (
-                            <div key={item.id} className="flex justify-between items-center border-b border-gray-700 py-2">
-                                <span className="text-white flex-1 truncate pr-2">{item.name}</span>
-                                <span className="text-gray-400 text-sm w-24 text-center">{item.quantity} x ₦{item.price}</span>
-                                <span className="text-white font-semibold">₦{item.quantity * item.price}</span>
+                            <div key={item.uniqueId} className="flex justify-between items-center border-b border-gray-700 py-2">
+                                <span className="text-white flex-1 truncate pr-2 w-2/5">{item.name}</span>
+                                <span className="text-gray-400 text-sm w-1/5 text-center">{item.quantity}</span>
+                                <span className="text-white font-semibold w-1/5 text-right">₦{item.quantity * item.price}</span>
+                                <button
+                                    onClick={() => removeFromCart(item.uniqueId)}
+                                    className="text-red-500 hover:text-red-700 transition duration-150 ml-4"
+                                >
+                                    <FaTrash />
+                                </button>
                             </div>
                         ))}
                     </div>
@@ -68,16 +73,10 @@ Thank you!`;
                             Proceed to Checkout
                         </button>
                         <button
-                            onClick={onClose} // Just close the modal
+                            onClick={onClose} 
                             className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-150"
                         >
                             Continue Shopping
-                        </button>
-                        <button
-                            onClick={handleEmptyCart}
-                            className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-150"
-                        >
-                            Empty Cart
                         </button>
                     </div>
                 </>
