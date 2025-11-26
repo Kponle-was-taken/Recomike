@@ -13,7 +13,7 @@ const FeedListFull = () => {
             <button onClick={() => navigate(-1)} className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-500 hover:bg-gray-600  text-white font-semibold py-2 px-4 rounded-lg transition duration-150">
               Back
             </button>
-            <h1 className="text-4xl md:text-6xl font-bold text-white">All Feeds</h1>
+            <h1 className="text-4xl md:text-6xl font-bold text-white">Feeds</h1>
         </div>
         
         

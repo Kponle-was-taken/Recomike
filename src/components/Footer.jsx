@@ -14,7 +14,7 @@ const Footer = () => {
             <span className="text-base text-blue-200 font-mono">Ventures</span>
           </h3>
           <p className="text-gray-400 text-sm max-w-md">
-            Your trusted partner in animal nutrition and farm supplies. Providing quality feeds and concentrates for healthy growth.
+            The best nutrition for your animals, from barn to backyard. Premium feed, trusted locally.
           </p>
         </div>
 
