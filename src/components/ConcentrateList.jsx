@@ -1,10 +1,11 @@
 import React from 'react';
-import { Concentrates } from '../data/data';
+import { Concentrates as concentratesData } from '../data/data';
 import ProductCard from './ProductCard'; 
 import { useNavigate } from 'react-router-dom';
 
-const ConcentrateList = ({ showBackButton = true }) => {
+const ConcentrateList = ({ showBackButton = true, limit }) => {
     const navigate = useNavigate();
+    const concentrates = limit ? concentratesData.slice(0, limit) : concentratesData;
 
     return (
         <div className="bg-slate-900 min-h-screen p-4">
@@ -21,7 +22,7 @@ const ConcentrateList = ({ showBackButton = true }) => {
                 </div>
 
                 <div className='grid md:grid-cols-4 grid-cols-1 gap-8'>
-                    {Concentrates.map((concentrateItem) => (
+                    {concentrates.map((concentrateItem) => (
                         <ProductCard key={concentrateItem.id} product={concentrateItem} />
                     ))}
                 </div>
